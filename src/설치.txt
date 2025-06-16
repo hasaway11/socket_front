@@ -1,0 +1,5 @@
+npm install axios
+npm install react-bootstrap bootstrap
+npm install zustand
+npm install react-toastify
+npm install sockjs-client @stomp/stompjs
