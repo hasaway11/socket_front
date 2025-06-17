@@ -3,6 +3,12 @@ import SockJS from "sockjs-client";
 import { create } from "zustand";
 import { getUsername } from "../utils/authApi";
 
+// create함수는 커스텀 훅 함수를 리턴하는 팩토리 함수
+// useAppStore()를 호출했을 때 반환되는 값이 store 객체(상태와 메서드로 구성)
+
+// zustand는 상태를 다루기위한 set, get 함수를 제공
+// 사용자는 상태를 정의하고 set, get을 이용해 상태를 관리
+// create를 통해 zustand는 set, get을 파라미터로 제공하고 사용자가 작성한 로직을 전달받아 커스텀훅을 생성
 const useAppStore = create((set, get) => ({
   username: undefined,
   socket: null,

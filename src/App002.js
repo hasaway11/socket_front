@@ -1,6 +1,8 @@
 import { Client } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
 
+// 웹소켓 연결하기
+
 function App() {
   let socket = null;
 
