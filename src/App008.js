@@ -45,9 +45,9 @@ function App() {
       Web Socket 연결 예제
       <input value={input} onChange={(e)=>setInput(e.target.value)} onKeyDown={handleKeyDown} placeholder="메시지 입력 후 Enter" disabled={!username} />
       <textarea value={messages} readOnly rows={10} style={{ width: "100%", marginTop: "10px" }} />
-      <button onClick={()=>login('spring')}>스프링 로그인</button>
-      <button onClick={()=>login('summer')}>summer 로그인</button>
-      <button onClick={()=>login('winter')}>윈터 로그인</button>
+      <button onClick={()=>login('spring')} disabled={username && username!=='spring'}>스프링 로그인</button>
+      <button onClick={()=>login('summer')} disabled={username && username!=='summer'}>summer 로그인</button>
+      <button onClick={()=>login('winter')} disabled={username && username!=='winter'}>윈터 로그인</button>
     </div>
   );
 }

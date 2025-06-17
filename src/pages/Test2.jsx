@@ -1,5 +1,6 @@
 import { useState } from "react";
 import api from "../utils/api";
+import { Link } from "react-router-dom";
 
 function Test1() {
   const [receiver, setReceiver] = useState('');
@@ -19,6 +20,8 @@ function Test1() {
 
   return (
     <div>
+      <Link to='/'>루트페이지로</Link>
+      <br/>
       <select onChange={handleChange}>
         <option>spring</option>
         <option>summer</option>

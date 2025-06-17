@@ -2,6 +2,7 @@ import { Client } from "@stomp/stompjs";
 import { useEffect, useRef} from "react";
 import SockJS from "sockjs-client";
 import { Slide, toast, ToastContainer } from "react-toastify";
+import { Link } from "react-router-dom";
 
 // 4. 웹소켓 수신하기
 
@@ -18,9 +19,14 @@ function App() {
       webSocketFactory:()=>new SockJS("http://localhost:8080/ws"),
       onConnect: () => {
         client.subscribe(subUrl, (message) => {
-          const arr = message.body.split(":");
-          const msg = `${arr[1]}에 ${arr[0]}님의 메시지 도착`;
-          show(msg);
+          const [sender] = message.body.split(":");
+          // const msg = `${arr[1]}에 ${arr[0]}님의 메시지 도착`;
+          show(
+            <div>
+              <div>{sender}님의 메시지 도착</div>
+              <div><Link to="/read">👉 읽기</Link></div>
+            </div>
+          );
         });
       },
     });
