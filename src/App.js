@@ -4,9 +4,9 @@ import { useEffect } from "react";
 import { ToastContainer, toast, Slide } from "react-toastify";
 import Index from "./pages/Index.jsx";
 import Login from "./pages/Login.jsx";
-import Private from "./pages/Private.jsx";
-import User from "./pages/User.jsx";
-import Hospital from "./pages/Hospital.jsx";
+import PrivatePage from "./pages/PrivatePage.jsx";
+import UserPage from "./pages/UserPage.jsx";
+import HospitalPage from "./pages/HospitalPage.jsx";
 import PublicRoute from "./routes/PublicRoute.jsx";
 import PrivateRoute from "./routes/PrivateRoute.jsx";
 import UserRoute from "./routes/UserRoute.jsx";
@@ -39,9 +39,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/login" element={<PublicRoute element={<Login />} />} />
-        <Route path="/private" element={<PrivateRoute element={<Private/>} />} />
-        <Route path="/user" element={<UserRoute element={<User />} />} />
-        <Route path="/hospital" element={<HospitalRoute element={<Hospital />} />} />
+        <Route path="/private" element={<PrivateRoute element={<PrivatePage/>} />} />
+        <Route path="/user" element={<UserRoute element={<UserPage />} />} />
+        <Route path="/hospital" element={<HospitalRoute element={<HospitalPage />} />} />
       </Routes>
       <ToastContainer />
     </>

@@ -21,14 +21,11 @@ const useAppStore = create((set, get) => ({
       return; 
 
     const client = new Client({
-      reconnectDelay: 5000,
+      reconnectDelay: 0,
       webSocketFactory: () => new SockJS("http://localhost:8080/ws"),
       onConnect: () => {
         console.log("웹 소켓 연결");
         set({ socket: client });
-      },
-      onStompError: (frame) => {
-        console.error("웹소켓 오류:", frame);
       }
     });
 
@@ -44,9 +41,10 @@ const useAppStore = create((set, get) => ({
 
       set({ username, role });
 
-      // 로그인 성공 후 웹소켓이 없다면 연결 시도
+      // 로그인 성공했다면 웹소켓 연결
+      // !get().socket으로 조건을 지정할 경우 (로그인 성공 후 웹소켓 연결) vs (로그인 후 화면이동하면서 checkAuth 수행) 중 후자가 더 빠르게 처리됨
+      // 그결과 로그인하면 웹소켓이 2회 연결되는 문제 발생
       if (prevUsername !== username) {
-        console.log("checkAuth", "연결합니다");
         get().connectWebSocket();
       }
     } catch (err) {
@@ -59,7 +57,6 @@ const useAppStore = create((set, get) => ({
   // 수동으로 사용자 설정
   setLogin: (username, role) => {
     set({ username, role });
-    console.log("setLogin", "연결합니다");
     get().connectWebSocket();
   },
 

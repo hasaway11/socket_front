@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 function PrivatePage() {
   const [receiver, setReceiver] = useState('');
 
-  const handleChange=(e)=>setReceiver(e.target.value);
+  const handleChange=(e)=>{
+    console.log("name:" + e.target.value)
+    setReceiver(e.target.value);
+  }
 
   const handleSend=async()=>{
     const message = {receiver:receiver, text:"까꿍"};
@@ -23,6 +26,7 @@ function PrivatePage() {
       <Link to='/'>루트페이지로</Link>
       <br/>
       <select onChange={handleChange}>
+        <option disabled selected>아이디를 선택</option>
         <option>spring</option>
         <option>summer</option>
         <option>winter</option>
