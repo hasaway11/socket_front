@@ -21,6 +21,8 @@ function App() {
         client.subscribe(subUrl, (message) => {
           const [sender] = message.body.split(":");
           // const msg = `${arr[1]}에 ${arr[0]}님의 메시지 도착`;
+
+          // React Toastify는 JSX 파라미터를 지원
           show(
             <div>
               <div>{sender}님의 메시지 도착</div>

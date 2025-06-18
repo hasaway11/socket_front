@@ -2,7 +2,7 @@ import { useState } from "react";
 import api from "../utils/api";
 import { Link } from "react-router-dom";
 
-function Test1() {
+function PrivatePage() {
   const [receiver, setReceiver] = useState('');
 
   const handleChange=(e)=>setReceiver(e.target.value);
@@ -32,4 +32,4 @@ function Test1() {
   )
 }
 
-export default Test1
+export default PrivatePage

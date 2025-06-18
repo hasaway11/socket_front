@@ -11,6 +11,7 @@ import { getUsername } from "../utils/authApi";
 // create를 통해 zustand는 set, get을 파라미터로 제공하고 사용자가 작성한 로직을 전달받아 커스텀훅을 생성
 const useAppStore = create((set, get) => ({
   username: undefined,
+  role:undefined,
   socket: null,
 
   // 웹소켓 연결 생성 함수
@@ -38,11 +39,14 @@ const useAppStore = create((set, get) => ({
   checkAuth: async () => {
     try {
       const res = await getUsername();
-      const username = res.data.username;
-      set({ username });
+      const {username,role} = res.data;
+      const prevUsername = get().username;
+
+      set({ username, role });
 
       // 로그인 성공 후 웹소켓이 없다면 연결 시도
-      if (!get().socket) {
+      if (prevUsername !== username) {
+        console.log("checkAuth", "연결합니다");
         get().connectWebSocket();
       }
     } catch (err) {
@@ -53,14 +57,17 @@ const useAppStore = create((set, get) => ({
   },
 
   // 수동으로 사용자 설정
-  setLogin: (username) => {
-    set({ username });
+  setLogin: (username, role) => {
+    set({ username, role });
+    console.log("setLogin", "연결합니다");
     get().connectWebSocket();
   },
 
   // 로그아웃 처리
-  setLogout: () =>set({ username: null, socket: null }),
-
+  setLogout: () =>{
+    get().socket.deactivate();
+    set({ username: null, socket: null });
+  }
 }));
 
 export default useAppStore;

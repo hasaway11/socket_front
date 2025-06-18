@@ -2,11 +2,6 @@ import { useState } from "react";
 import { Slide, toast, ToastContainer } from "react-toastify";
 
 // 1. 토스트 띄우기
-// 2. 웹소켓 연결하기
-// 3. 웹소켓 연결해 서버측 메시지 출력하기
-// 4. 웹소켓 채팅하기
-// 5. 귓말 보내기
-// 6. 메모작성하면 메시지보내기
 
 function App() {
   const [message, setMessage] = useState('');
